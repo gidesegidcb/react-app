@@ -1,5 +1,5 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -8,15 +8,15 @@ import {
 import { Navbar,Nav} from 'react-bootstrap'
 import Filter from './views/Filter/Filter'
 import Detail from './views/Detail/Detail'
-import useStyles from './Styles'
+import './App.css'
 function App() {
-  const classes=useStyles()
+  // const classes=useStyles()
   return(
     <div className="row">
         <div className="col-md-12" data-testid="appid">
             <Router>
-                <Navbar bg="dark" variant="dark" expand="lg" sticky="top" className={classes.fonts}>
-                    <Navbar.Brand href="#home" className={classes.logo}>
+                <Navbar bg="dark" variant="dark" expand="lg" sticky="top" className="Navbar">
+                    <Navbar.Brand href="#home" className="logo">
                         Company's logo
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />

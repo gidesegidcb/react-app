@@ -1,7 +1,7 @@
 import { useHistory} from "react-router-dom";
-import useStyle from './Styles'
+import './Detail.css'
+import MyButton from '../../components/Button'
 function Detail(){
-    const classes=useStyle()
     const history = useHistory();
     let data=history.location.state.data
     function back(){
@@ -9,8 +9,8 @@ function Detail(){
         history.push(path);
     }
     return(
-        <div className={classes.container} data-testid="detailid">
-           <div className={classes.details}>
+        <div className="container" data-testid="detailid">
+           <div className="details">
            {
               Object.entries(data).map((key,value)=>{
                  return(
@@ -21,7 +21,7 @@ function Detail(){
                  ) 
               })
             }
-            <button onClick={()=>back()} >Back</button>
+            <MyButton onClick={()=>back()} title="back"/>
            </div>
         </div>
     )

@@ -1,0 +1,37 @@
+.filterContainer{
+    display: flex;
+    margin-left: 10px;
+    margin-right:10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    justify-content: center; 
+    justify-items: center; 
+}
+.filterHeadings{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right:10px;
+    margin-bottom: 10px;
+    margin-top: 10px; 
+    justify-content: center; 
+    justify-items: center; 
+}
+.lists{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right:10px;
+    margin-bottom: 10px;
+    margin-top: 10px; 
+    justify-content: center; 
+    justify-items: center; 
+}
+.lists form{
+    margin-left: 10px;
+    margin-right:10px;
+    margin-bottom: 10px;
+    margin-top: 10px; 
+    justify-content: center; 
+    justify-items: center; 
+}

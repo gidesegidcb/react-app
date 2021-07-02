@@ -1,11 +1,14 @@
 import { useState} from 'react'
 import UseApi from '../../Axios';
-import useStyle from './Styles'
+// import useStyle from './Styles'
 import Item from '../Item/Item'
 import config from '../../config/config'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import MyButton from '../../components/Button';
+import MyInput from '../../components/Input'
+import './Filter.css'
 function Filter(){
-    const classes=useStyle()
+    // const classes=useStyle()
     const [selectionInfo, setSelectionInfo]=useState('')
 
     const [field1, setField1]=useState('');
@@ -79,28 +82,28 @@ function Filter(){
         
     }
     return(
-        <div className="row">
+        <div className="filterContainer">
             <div className="col-md-12">
-                    <div data-testid="filters">
-                        <div className={classes.heading}>
+                    <div data-testid="filters" className="filterHeadings">
+                        <div className="">
                             <h2>Your list, search or filter is based on</h2>
                         </div>
                         <div>{selectionInfo}</div>
-                        <div className={classes.checkboxesDiv}>
-                        <div className={classes.checkboxes}>
+                        <div className="">
+                        <div className="">
                         <input type="radio" onClick={()=>listAllDataCheckBox()} checked={listAllDataCheckbox} readOnly data-testid="listAllDataCheckbox"/> {config.searchBases.selectAll}
                         </div>
-                        <div className={classes.checkboxes}>
+                        <div className="">
                         <input type="radio" onClick={()=>getProcessCheckBox()} checked={field1Display} readOnly data-testid="processCheckbox"/> {config.searchBases.selectBasedField1}
                         </div>
-                        <div className={classes.checkboxes}>
+                        <div className="">
                         <input type="radio" onClick={()=>getCustomerCheckBox()} checked={field2Display} readOnly data-testid="customerCheckbox"/> {config.searchBases.selectBasedField2}
                         </div>
-                        <div className={classes.checkboxes}>
+                        <div className="">
                         <input type="radio" onClick={()=>getSensorCheckBox()} checked={field3Display} readOnly data-testid="sensorCheckbox"/> {config.searchBases.selectBasedField3}
                         </div>
                     </div>
-                    <div className={classes.inputs}>
+                    <div className="lists">
                         {
                             listAllChecked &&
                             <div>
@@ -109,25 +112,32 @@ function Filter(){
                         {
                             field1Display && 
                             <div>
-                
-                                <input type="text" placeholder="Process" data-testid='process' onChange={e => setField1(e.target.value)} />
+                                <MyInput placeholder="Process" onChange={e => setField1(e.target.value)} data-testid='process'/>
                             </div>
                         }
                         {
                             field2Display &&
                             <div>
-                            <input type="text" placeholder="Customer name" data-testid='customer' onChange={e => setField2(e.target.value)} />
+                            <MyInput placeholder="Customer name" data-testid='customer' onChange={e => setField2(e.target.value)} />
                             </div>
                         }
                         {
                             field3Display &&
                             <div>
-                                <input type="text" placeholder="Sensor data" onChange={e => setField3(e.target.value)} data-testid='sensor'/>
+                                <MyInput placeholder="Sensor data" onChange={e => setField3(e.target.value)} data-testid='sensor'/>
                             </div>
                         }
+                        <div>
                         <form onSubmit={search}>
-                          <button type="submit" data-testid="btnSearch">Search</button>
+                           <MyButton
+                                title='Search' 
+                                className="btn-primary"
+                                type="submit"
+                                data-testid="btnSearch"/>
                         </form>
+                        </div>
+                        
+                        
                     </div>
                 </div>
                 <Item data={data} isLoading={isLoading} isError={isError}/>
