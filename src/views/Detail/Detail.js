@@ -21,7 +21,7 @@ function Detail(){
                  ) 
               })
             }
-            <MyButton onClick={()=>back()} title="back"/>
+            <MyButton onClick={()=>back()} title="back" className="btn-primary"/>
            </div>
         </div>
     )

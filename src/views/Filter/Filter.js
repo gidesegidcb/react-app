@@ -6,11 +6,11 @@ import config from '../../config/config'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyButton from '../../components/Button';
 import MyInput from '../../components/Input'
+import MyRadio from '../../components/Radio'
+import MyAlert from '../../components/Alert'
 import './Filter.css'
 function Filter(){
-    // const classes=useStyle()
     const [selectionInfo, setSelectionInfo]=useState('')
-
     const [field1, setField1]=useState('');
     const [field2, setField2]=useState('');
     const [field3, setField3]=useState('');
@@ -88,22 +88,24 @@ function Filter(){
                         <div className="">
                             <h2>Your list, search or filter is based on</h2>
                         </div>
-                        <div>{selectionInfo}</div>
-                        <div className="">
-                        <div className="">
-                        <input type="radio" onClick={()=>listAllDataCheckBox()} checked={listAllDataCheckbox} readOnly data-testid="listAllDataCheckbox"/> {config.searchBases.selectAll}
+                        <div>
+                            <MyAlert className="alert-danger">{selectionInfo}</MyAlert>
                         </div>
-                        <div className="">
-                        <input type="radio" onClick={()=>getProcessCheckBox()} checked={field1Display} readOnly data-testid="processCheckbox"/> {config.searchBases.selectBasedField1}
-                        </div>
-                        <div className="">
-                        <input type="radio" onClick={()=>getCustomerCheckBox()} checked={field2Display} readOnly data-testid="customerCheckbox"/> {config.searchBases.selectBasedField2}
-                        </div>
-                        <div className="">
-                        <input type="radio" onClick={()=>getSensorCheckBox()} checked={field3Display} readOnly data-testid="sensorCheckbox"/> {config.searchBases.selectBasedField3}
-                        </div>
-                    </div>
-                    <div className="lists">
+                        <div className="radiobtnDiv">
+                            <div className="">
+                            <MyRadio onClick={()=>listAllDataCheckBox()} checked={listAllDataCheckbox} readOnly data-testid="listAllDataCheckbox"/> {config.searchBases.selectAll}
+                            </div>
+                            <div className="">
+                            <MyRadio onClick={()=>getProcessCheckBox()} checked={field1Display} readOnly data-testid="processCheckbox"/> {config.searchBases.selectBasedField1}
+                            </div>
+                            <div className="">
+                            <MyRadio onClick={()=>getCustomerCheckBox()} checked={field2Display} readOnly data-testid="customerCheckbox"/> {config.searchBases.selectBasedField2}
+                            </div>
+                            <div className="">
+                            <MyRadio onClick={()=>getSensorCheckBox()} checked={field3Display} readOnly data-testid="sensorCheckbox"/> {config.searchBases.selectBasedField3}
+                            </div>
+                       </div>
+                       <div className="lists">
                         {
                             listAllChecked &&
                             <div>
@@ -128,16 +130,14 @@ function Filter(){
                             </div>
                         }
                         <div>
-                        <form onSubmit={search}>
-                           <MyButton
-                                title='Search' 
-                                className="btn-primary"
-                                type="submit"
-                                data-testid="btnSearch"/>
-                        </form>
+                            <form onSubmit={search}>
+                            <MyButton
+                                    title='Search' 
+                                    className="btn-primary"
+                                    type="submit"
+                                    data-testid="btnSearch"/>
+                            </form>
                         </div>
-                        
-                        
                     </div>
                 </div>
                 <Item data={data} isLoading={isLoading} isError={isError}/>
