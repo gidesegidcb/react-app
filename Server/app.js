@@ -2,6 +2,7 @@ const express=require('express');
 const app=express();
 const router=require('./Router/Router')
 const createError=require('http-errors')
+const bodyParser = require('body-parser');
 require('dotenv/config')
 app.use(function(req, res, next) { //allow cross origin requests
     res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
@@ -49,6 +50,8 @@ app.use((err, req, res, next)=> {
            `
            )
 });
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
 app.listen(process.env.ServerPort,function(){
     console.log("server is running")
 })

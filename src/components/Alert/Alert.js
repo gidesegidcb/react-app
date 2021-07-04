@@ -1,9 +1,11 @@
 import React from 'react';
 function Alert({...props }) {
     return (
-      <p {...props}>
-       {props.children}
-      </p>
+     <div>
+        <p {...props}>
+        {props.children}
+        </p>
+     </div>
     );
   }
   export default Alert

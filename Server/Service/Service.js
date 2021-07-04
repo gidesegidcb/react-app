@@ -15,7 +15,9 @@ let data=[
     "SensorData":"WaterTemp:celcius:22;Pump10:off;Pump5:on;Dra inSensor:on;WaterLevel:ml-30;","OnlineFrom":"29-06-2016 16:55:02"}
 ]
 // let data=[
-//     {name:'Gide', lastname:'segid'}
+//     {name:'gide',lastname:'segid', age:"40"},
+//     {name:'Elud',lastname:'Gide', age:"6"},
+//     {name:'Yohana',lastname:'Habtemichael', age:"30"}
 // ]
 let collection=[]
 module.exports=serviceTest={
@@ -24,14 +26,14 @@ module.exports=serviceTest={
             return resolve(data)
         })
     },
-    getProcess:(field1)=>{
+    getField1:(field1)=>{
         collection=[]
         data.find((item)=>{
             let values=Object.values(item).map((itemsToLowercase)=>{
                 return itemsToLowercase.toLocaleLowerCase()
             })
             if(values.includes(field1.toLocaleLowerCase())){
-             collection.push(item)
+              collection.push(item)
             }
          })
         return new Promise((resolve,reject)=>{
@@ -45,47 +47,26 @@ module.exports=serviceTest={
             
         })
     },
-    getCustomer:(field2)=>{
+    details:(detailsInfo)=>{
+        console.log("detailsInfo",detailsInfo)
         collection=[]
-        data.filter((item)=>{
-            // if(item.CustomerName.toLocaleLowerCase().includes(customer.toLocaleLowerCase())){
-            //     collection.push(item)
-            // }
-            let values=Object.values(item).map((itemsToLowercase)=>{
-                return itemsToLowercase.toLocaleLowerCase()
-            })
-            if(values.includes(field2.toLocaleLowerCase())){
-             collection.push(item)
-            }
-        })
+        collection = multiFilter(data, detailsInfo);
         return new Promise((resolve,reject)=>{
             if(collection.length==0){
-                return resolve("Not found")
+             return resolve("Not found")
             }else if(collection.length!==0){
                 return resolve(collection)
             }else{
                 return reject("There was error")
             }
-        }) 
-    },
-    getSensor:(field3)=>{
-        collection=[]
-        data.filter((item)=>{
-            let values=Object.values(item).map((itemsToLowercase)=>{
-                return itemsToLowercase.toLocaleLowerCase()
-            })
-            if(values.includes(field3.toLocaleLowerCase())){
-             collection.push(item)
-            }
-        })
-        return new Promise((resolve,reject)=>{
-            if(collection.length==0){
-                return resolve("Not found")
-            }else if(collection.length!==0){
-                return resolve(collection)
-            }else{
-                return reject("There was error")
-            }
-        }) 
+             
+         })
+
     }
+}
+function multiFilter(array, filters) {
+    const filterKeys = Object.keys(filters);
+    return array.filter((item) => {
+    return filterKeys.every(key => !!~filters[key].indexOf(item[key]));
+    });
 }

@@ -1,0 +1,22 @@
+.list{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   justify-items: center; 
+}
+.list ul{
+    list-style-type: none;
+    font-size: 14px;
+}
+.list li{
+    margin-left: 10px;
+    font-size: 12px;
+}
+.listContainer{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+    justify-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,12 @@
+.btnDiv{
+    margin-left: 10px;
+}
+.btnDiv button{
+    width: 70px;
+    height: 40px;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}

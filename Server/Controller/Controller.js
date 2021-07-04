@@ -1,4 +1,5 @@
 const service=require('../Service/Service')
+
 module.exports=data={
     getAllData:async(req,res)=>{
        try {
@@ -8,10 +9,10 @@ module.exports=data={
           res.json("There was error")
        }
     },
-    getProcess:async(req,res)=>{
+    getField1:async(req,res)=>{
         let field1=req.params.field1
         try {
-            let data=await service.getProcess(field1)
+            let data=await service.getField1(field1)
             if(data.length==0){
                 res.json("Not found")
             }else{
@@ -47,5 +48,17 @@ module.exports=data={
            } catch (error) {
               res.json("There was error")
            }
+    },
+    details:async(req,res)=>{
+        try {
+            let data=await service.details(req.body)
+            if(data.length==0){
+                res.json("Not found")
+            }else{
+                res.json(data)
+            }
+        } catch (error) {
+            res.json("There was error")
+        }
     }
 }
