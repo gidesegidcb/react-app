@@ -36,6 +36,7 @@ function Login() {
     return (
       <div className="loginContainer" data-testid="loginContainerTestId">
         <h2>{myconfig.loginTitle}</h2>
+        <p>Nb: user name and password is in the views/Login.js </p>
         <MyAlert className="alert-danger">{loginNotice}</MyAlert>
         <div className="loginInputContainer">
             <MyInput type="text" placeholder={myconfig.username} onChange={(e)=>setUsername(e.target.value)}/>
