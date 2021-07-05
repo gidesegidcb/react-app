@@ -10,17 +10,17 @@ import './Filter.css'
 function Filter(){
     const [myconfig]=useState(config.filterPage)
     const [selectionInfo, setSelectionInfo]=useState('')
-    const [field1, setField1]=useState('');
+    const [search, setSearch]=useState('');
     const [allData, setAllData]=useState('');
     const [{ data, isLoading, isError="" }, doFetch] = UseApi(myconfig.routs.urlBasedAllData);
     const [listAllDataCheckbox, setlistAllDataCheckbox]=useState(false)
     const [listAllChecked, setListAllChecked] = useState(false)
-    const [field1Display, setField1display]=useState(false);
+    const [searchDisplay, setSearchDisplay]=useState(false);
 
-    function search(e){
+    function MySearch(e){
         e.preventDefault()
-        if(field1!==''){
-            doFetch({url:myconfig.routs.urlBasedField1+field1,method:'get',data:field1})
+        if(search!==''){
+            doFetch({url:myconfig.routs.urlBasedSearch+search,method:'get',data:search})
             setSelectionInfo('')
             
         }else if(allData!==''){
@@ -32,16 +32,16 @@ function Filter(){
     }
     function listAllDataCheckBox(){
         setSelectionInfo('')
-        setField1('')
+        setSearch('')
         setlistAllDataCheckbox(!listAllDataCheckbox)
         setAllData('allData')
-        setField1display(false) 
+        setSearchDisplay(false) 
     }
-    function getField1CheckBox(){
+    function getSearchCheckBox(){
         if(listAllChecked===true){
             setListAllChecked(false)
         }
-        setField1display(!field1Display)
+        setSearchDisplay(!searchDisplay)
         setlistAllDataCheckbox(false)
     }
     return(
@@ -54,12 +54,12 @@ function Filter(){
                         <div className="paramSelection">
                             <MyAlert className="alert-danger">{selectionInfo}</MyAlert>
                             <MyInput type="radio" onClick={()=>listAllDataCheckBox()} checked={listAllDataCheckbox} readOnly data-testid="listAllDataCheckbox"/> {myconfig.searchBases.selectAll}
-                            <MyInput type="radio" onClick={()=>getField1CheckBox()} checked={field1Display} readOnly data-testid="checkbox1"/> {myconfig.searchBases.selectBasedField1}
+                            <MyInput type="radio" onClick={()=>getSearchCheckBox()} checked={searchDisplay} readOnly data-testid="checkbox1"/> {myconfig.searchBases.selectBasedSearch}
                         </div>
                         <div className="inputParams">
                             {listAllChecked && <div></div>}
-                            {field1Display && <MyInput type="text" placeholder={myconfig.searchBases.selectBasedField1} onChange={e => setField1(e.target.value)} data-testid='process'/>}
-                            <form onSubmit={search}>
+                            {searchDisplay && <MyInput type="text" placeholder={myconfig.searchBases.selectBasedSearch} onChange={e => setSearch(e.target.value)} data-testid='search'/>}
+                            <form onSubmit={MySearch}>
                                 <MyButton  type="submit" title='Search' className="btn-primary" data-testid="btnSearch"/>
                             </form>
                         </div>

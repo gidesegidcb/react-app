@@ -5,7 +5,7 @@ let myconfig={
     filterPage:{
         searchBases:{
             selectAll:"List all data",
-            selectBasedField1:"Search",
+            selectBasedSearch:"Search",
         },
         listTitle:{
             mainTitle:"Your list, search or filter is based on..",
@@ -13,9 +13,7 @@ let myconfig={
         },
         routs:{
             urlBasedAllData:server,
-            urlBasedField1:server+'/getField1/',
-            urlBasedField2:server+'/getField2/',
-            urlBasedField3:server+'/getField3/',
+            urlBasedSearch:server+'/getSearches/',
             urlDetails:server+'/details/'
         }
     },

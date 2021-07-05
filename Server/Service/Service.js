@@ -26,15 +26,16 @@ module.exports=serviceTest={
             return resolve(data)
         })
     },
-    getField1:(field1)=>{
+    getSearches:(search)=>{
         collection=[]
-        data.find((item)=>{
+        data.filter((item)=>{
             let values=Object.values(item).map((itemsToLowercase)=>{
                 return itemsToLowercase.toLocaleLowerCase()
             })
-            if(values.includes(field1.toLocaleLowerCase())){
-              collection.push(item)
-            }
+            let searchLowerCase=search.toLocaleLowerCase()
+            if(values.find(a =>a.includes(searchLowerCase))){
+                collection.push(item)
+              }
          })
         return new Promise((resolve,reject)=>{
            if(collection.length==0){
@@ -44,7 +45,6 @@ module.exports=serviceTest={
            }else{
                return reject("There was error")
            }
-            
         })
     },
     details:(detailsInfo)=>{
