@@ -44,9 +44,9 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 -src/
 - components: 
-   Edit or create component in its functionality or style and call them at views folder to be displayed in the view page
+   Elements or group of elements which have their own styling and functionalities and exported as a unique name to be used by views folder or in a component itself
 - views:
-   Edit or create views here .Views could be any view combinations of one or multiple components and can be added its own style. Add tests to this view so , you could be sure enough if your views could been loaded successfully or not. You could implement unit tests here.
+   Views could be any view combinations of one or multiple components and can be added its own style. Add tests to this view so , you could be sure enough if your views could been loaded successfully or not. You could implement unit tests here.
 - SourceConfig:
    This file is text file that will be displayed at a particular page.Plus in this page you can put all routes and you can call them from any where
 - App:

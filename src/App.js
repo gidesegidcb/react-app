@@ -4,6 +4,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
+    useHistory,
   } from "react-router-dom";
 import { Navbar,Nav} from 'react-bootstrap'
 import Filter from './views/Filter/Filter'
@@ -13,9 +14,13 @@ import './App.css'
 import { UserContext } from './UserContext';
 import Login from './views/Login/Login'
 import PageNoutFound from './views/PageNotFound/PageNotFound'
+import Language from './SourceConfig/config'
+import HeaderText from './components/HeaderText/HeaderText';
+import MyP from './components/P/P'
 function App() {
   const [user, setUser]=useState(false)
   const providerValue=useMemo(()=>({user,setUser}),[user,setUser]);
+  const [myconfig]=useState(Language.language.menu)
   return(
     <div className="row">
         <div className="col-md-12" data-testid="appid">
@@ -30,10 +35,10 @@ function App() {
                     {
                             user===false ?
                              <Nav className="mr-auto">
-                                <Nav.Link href="/">Home</Nav.Link>
-                                <Nav.Link href="/about-us">About us</Nav.Link>
-                                <Nav.Link href="/contact-us">Contact Us</Nav.Link>
-                                <Nav.Link href="/login">Login</Nav.Link>
+                                <Nav.Link href="/">{myconfig.home}</Nav.Link>
+                                <Nav.Link href="/about-us">{myconfig.about}</Nav.Link>
+                                <Nav.Link href="/contact-us">{myconfig.contact}</Nav.Link>
+                                <Nav.Link href="/login">{myconfig.login}</Nav.Link>
                               </Nav>
                             :
                              <Nav className="mr-auto">
@@ -77,21 +82,28 @@ function App() {
     </div>
 ) 
 }
+
 function About() {
   // const {user, setUser}=useContext(UserContext)
+  const [myconfig]=useState(Language.language.about)
   return (
-    <div>
-      <h2>This is About us page</h2>
-      {/* <p>{user}</p> */}
+    <div className="text-center">
+      <HeaderText type='h1' title={myconfig.title}/>
+      <MyP text={myconfig.mainContent}></MyP>
     </div>
   );
 }
 function ContactUs() {
   // const {user, setUser}=useContext(UserContext)
+  const [myconfig]=useState(Language.language.contact)
   return (
-    <div>
-      <h2>This is contact us page</h2>
-      {/* <p>{user}</p> */}
+    <div className="text-center">
+       <HeaderText type='h1' title={myconfig.title}/>
+      {
+        
+          <MyP text={myconfig.mainContent}></MyP>
+        
+      }
     </div>
   );
 }

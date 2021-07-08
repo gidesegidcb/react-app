@@ -4,9 +4,9 @@ import './Detail.css'
 import MyButton from '../../components/Button/Button'
 import MyList from '../../components/List/List'
 import UseApi from '../../Axios';
-import config from '../../SourceConfig/config'
+import Language from '../../SourceConfig/config'
 function Detail(){
-    const [myconfig]=useState(config.detailPage)
+    const [myconfig]=useState(Language.language.detailPage)
     const history = useHistory();
     const [{ data, isLoading, isError="" }, doFetch] = UseApi();
     let inputData=history.location.state.data

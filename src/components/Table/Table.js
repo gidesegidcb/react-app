@@ -2,6 +2,11 @@ import React from 'react';
 import { useHistory, Link } from "react-router-dom";
 import { Button } from '@material-ui/core';
 import './Table.css'
+import Spliter from '../../Utilities/SplitFields'
+import FormatText from '../../Utilities/FormatText'
+import ImageChecker from '../../Utilities/ImageUrlChecker'
+import MyImage from '../../components/Image/Image'
+import MyLink from '../../components/Link/Link'
 const Table = (props) => {
   return (
     <div className="tableContainer">
@@ -20,7 +25,8 @@ const TableHeader = (props) => {
                 <tr key="header-0"> 
                     {
                     props.columns &&  props.columns.map((item)=>{
-                            return(<th key={item}>{item}</th>)
+                            let adjustedKey=Spliter(item)
+                            return(<th key={item}>{adjustedKey}</th>)
                     })
                     }
                 </tr>
@@ -40,26 +46,35 @@ const TableBody = (props) => {
                         <tr key={index}>
                             {
                                 Object.values(item).map((item2)=>{
+                                    let adjustedValue=FormatText(item2)
+                                    console.log("adjustedValue",adjustedValue)
                                 return(
                                     <td>
-                                      {item2}
+                                      {adjustedValue && adjustedValue.map((item)=>{
+                                           if (item.substring(0, 4) == 'http'){
+                                                let isImageExist= ImageChecker(item)
+                                                if(isImageExist==='yes'){
+                                                    return(<MyImage src={item} width="40px" height="40px"/>)
+                                                }else{
+                                                    return(<MyLink link={item} target="_blank" title={item}/>)
+                                                }
+                                            }
+                                          return(<li>{item}</li>)
+                                      })}
                                    </td>
                                 ) 
                                 })
                             }
                             {
                                 <td className="tableBtnDetails">
-                                    {/* <div> */}
                                     <Button component={Link}
-                                                to={{pathname: `/details`,
-                                                    state: {data: item,prevPath: history.location.pathname,
-                                                    }
-                                                }}
-                                                className="btn btn-primary" data-testid="btnDetails">
-                                                Details
-                                            </Button>
-                                    {/* </div> */}
-                                    
+                                        to={{pathname: `/details`,
+                                            state: {data: item,prevPath: history.location.pathname,
+                                            }
+                                        }}
+                                        className="btn btn-primary" data-testid="btnDetails">
+                                        Details
+                                    </Button>
                                 </td>
                             }
                         </tr>

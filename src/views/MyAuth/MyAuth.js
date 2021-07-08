@@ -14,8 +14,8 @@ function MyAuth(){
     }
     return(
         <div className="authDiv" data-testid="authDiv">
-        <MyAlert className="alert-info">You've loged In  hoora</MyAlert>
-        <MyButton title="log out" onClick={()=>logout()}/>
+            <MyAlert className="alert-info">You've loged In  hoora</MyAlert>
+            <MyButton title="log out" onClick={()=>logout()}/>
         </div>
     )
 }

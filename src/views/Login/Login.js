@@ -5,10 +5,11 @@ import MyInput from '../../components/Input/Input'
 import MyButton from '../../components/Button/Button'
 import MyAlert from '../../components/Alert/Alert'
 import './Login.css'
-import config from '../../SourceConfig/config'
+import Language from '../../SourceConfig/config'
+import HeaderText from '../../components/HeaderText/HeaderText';
 function Login() {
    
-    const [myconfig]=useState(config.loginPage)
+    const [myconfig]=useState(Language.language.loginPage)
     const {setUser}=useContext(UserContext)
     const myHistory=useHistory()
     const [username, setUsername]=useState('')
@@ -35,7 +36,7 @@ function Login() {
     }
     return (
       <div className="loginContainer" data-testid="loginContainerTestId">
-        <h2>{myconfig.loginTitle}</h2>
+        <HeaderText type="h2" title={myconfig.loginTitle}/>
         <p>Nb: user name and password is in the views/Login.js </p>
         <MyAlert className="alert-danger">{loginNotice}</MyAlert>
         <div className="loginInputContainer">

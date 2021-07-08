@@ -1,0 +1,16 @@
+.paragraphContainer{
+    display:  flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    margin-left: 10px;
+}
+.content{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.paragraphP{
+    margin-left: 20px;
+}
